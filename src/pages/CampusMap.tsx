@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { FloatingActionButton } from '@/components/FloatingActionButton';
+import { useLanguage } from '@/contexts/LanguageContext';
 import campusMapImage from '@/assets/real-campus-map.jpg';
 
 interface MapIssue {
@@ -97,13 +98,14 @@ const getIssueColor = (type: string) => {
 
 export default function CampusMap() {
   const [selectedIssue, setSelectedIssue] = useState<MapIssue | null>(null);
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-background pt-16 md:pt-16 pb-20 md:pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-foreground mb-2">캠퍼스 맵</h1>
-          <p className="text-muted-foreground">실시간 캠퍼스 정보를 확인하세요</p>
+          <h1 className="text-3xl font-bold text-foreground mb-2 break-words">{t('map.title')}</h1>
+          <p className="text-muted-foreground break-words">{t('map.subtitle')}</p>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-6">
@@ -111,9 +113,13 @@ export default function CampusMap() {
           <div className="lg:col-span-2">
             <Card className="h-[600px] relative overflow-hidden">
               <div 
-                className="w-full h-full bg-cover bg-center relative"
-                style={{ backgroundImage: `url(${campusMapImage})` }}
+                className="w-full h-full relative"
               >
+                <img 
+                  src={campusMapImage} 
+                  alt="가톨릭대학교 캠퍼스 지도" 
+                  className="w-full h-full object-contain bg-gray-50"
+                />
                 {/* Issue Pins */}
                 {mockIssues.map((issue) => (
                   <div
@@ -134,19 +140,19 @@ export default function CampusMap() {
                 
                 {/* Map Legend */}
                 <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg p-3">
-                  <h3 className="font-semibold text-sm mb-2">범례</h3>
+                  <h3 className="font-semibold text-sm mb-2">{t('map.legend')}</h3>
                   <div className="space-y-1 text-xs">
                     <div className="flex items-center space-x-2">
                       <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                      <span>엘리베이터</span>
+                      <span>{t('map.elevator')}</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                      <span>시설 손상</span>
+                      <span>{t('map.facilityDamage')}</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                      <span>접근성</span>
+                      <span>{t('map.accessibility')}</span>
                     </div>
                   </div>
                 </div>
@@ -160,7 +166,7 @@ export default function CampusMap() {
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <Clock className="h-5 w-5" />
-                  <span>실시간 정보</span>
+                  <span>{t('map.realTimeInfo')}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -213,7 +219,7 @@ export default function CampusMap() {
 
             <Card>
               <CardHeader>
-                <CardTitle>최근 신고</CardTitle>
+                <CardTitle>{t('map.recentReports')}</CardTitle>
                 <CardDescription>지난 24시간 신고 현황</CardDescription>
               </CardHeader>
               <CardContent>

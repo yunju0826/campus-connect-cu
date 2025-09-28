@@ -13,7 +13,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { useIsMobile } from '@/hooks/use-mobile';
-import universityLogo from '@/assets/cuk-logo-official.png';
+import universityLogo from '@/assets/cuk-logo-updated.png';
 
 const navigationItems = [
   { href: '/', label: '캠퍼스 맵', icon: Map, key: 'map' },

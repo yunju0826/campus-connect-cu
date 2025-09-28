@@ -7,23 +7,23 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const languages = [
-  { code: 'ko', name: '한국어', flag: '🇰🇷' },
-  { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'zh', name: '中文', flag: '🇨🇳' },
-  { code: 'ja', name: '日本語', flag: '🇯🇵' },
+  { code: 'ko' as const, name: '한국어', flag: '🇰🇷' },
+  { code: 'en' as const, name: 'English', flag: '🇺🇸' },
+  { code: 'zh' as const, name: '中文', flag: '🇨🇳' },
+  { code: 'ja' as const, name: '日本語', flag: '🇯🇵' },
 ];
 
 export function LanguageSwitcher() {
-  const [currentLang, setCurrentLang] = useState('ko');
+  const { language, setLanguage } = useLanguage();
 
-  const handleLanguageChange = (langCode: string) => {
-    setCurrentLang(langCode);
-    // Language switching logic would go here
+  const handleLanguageChange = (langCode: typeof language) => {
+    setLanguage(langCode);
   };
 
-  const currentLanguage = languages.find(lang => lang.code === currentLang);
+  const currentLanguage = languages.find(lang => lang.code === language);
 
   return (
     <DropdownMenu>
@@ -38,7 +38,7 @@ export function LanguageSwitcher() {
           <DropdownMenuItem
             key={lang.code}
             onClick={() => handleLanguageChange(lang.code)}
-            className={currentLang === lang.code ? 'bg-accent' : ''}
+            className={language === lang.code ? 'bg-accent' : ''}
           >
             <span className="mr-2">{lang.flag}</span>
             {lang.name}
