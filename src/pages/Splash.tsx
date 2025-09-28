@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import universityLogo from '@/assets/university-logo.png';
+import universityLogo from '@/assets/cuk-logo-official.png';
 
 export default function Splash() {
   const [isLoading, setIsLoading] = useState(true);

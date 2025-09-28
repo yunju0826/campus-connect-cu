@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { FloatingActionButton } from '@/components/FloatingActionButton';
-import campusMapImage from '@/assets/campus-map.png';
+import campusMapImage from '@/assets/real-campus-map.jpg';
 
 interface MapIssue {
   id: string;
@@ -21,7 +21,7 @@ const mockIssues: MapIssue[] = [
     id: '1',
     type: 'elevator',
     location: '미카엘관 3층',
-    position: { x: 30, y: 40 },
+    position: { x: 25, y: 35 },
     status: 'active',
     waitTime: 8,
     description: '엘리베이터 대기시간 길음'
@@ -29,18 +29,43 @@ const mockIssues: MapIssue[] = [
   {
     id: '2',
     type: 'facility',
-    location: '토마스관 1층',
-    position: { x: 60, y: 25 },
+    location: '성 토마스관 1층 화장실',
+    position: { x: 45, y: 25 },
     status: 'active',
-    description: '화장실 문 고장'
+    description: '화장실 문 손잡이 고장'
   },
   {
     id: '3',
     type: 'accessibility',
-    location: '루카관 입구',
-    position: { x: 45, y: 70 },
+    location: '성 루카관 정문',
+    position: { x: 65, y: 45 },
     status: 'active',
-    description: '휠체어 접근 어려움'
+    description: '휠체어 접근로 경사 가파름'
+  },
+  {
+    id: '4',
+    type: 'elevator',
+    location: '성 요한관 엘리베이터',
+    position: { x: 70, y: 30 },
+    status: 'active',
+    waitTime: 12,
+    description: '점심시간 혼잡'
+  },
+  {
+    id: '5',
+    type: 'facility',
+    location: '성 바오로관 계단',
+    position: { x: 35, y: 60 },
+    status: 'active',
+    description: '계단 난간 손상'
+  },
+  {
+    id: '6',
+    type: 'accessibility',
+    location: '중앙도서관 입구',
+    position: { x: 50, y: 40 },
+    status: 'active',
+    description: '자동문 센서 불량'
   }
 ];
 
@@ -146,9 +171,16 @@ export default function CampusMap() {
                   </div>
                   <Badge variant="secondary">8분</Badge>
                 </div>
+                <div className="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
+                  <div>
+                    <p className="font-medium">성 요한관 엘리베이터</p>
+                    <p className="text-sm text-muted-foreground">평균 대기시간</p>
+                  </div>
+                  <Badge variant="destructive">12분</Badge>
+                </div>
                 <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
                   <div>
-                    <p className="font-medium">루카관 엘리베이터</p>
+                    <p className="font-medium">성 루카관 엘리베이터</p>
                     <p className="text-sm text-muted-foreground">평균 대기시간</p>
                   </div>
                   <Badge variant="outline">3분</Badge>
@@ -186,21 +218,21 @@ export default function CampusMap() {
               </CardHeader>
               <CardContent>
                 <div className="text-center py-4">
-                  <p className="text-2xl font-bold text-primary">12</p>
+                  <p className="text-2xl font-bold text-primary">18</p>
                   <p className="text-sm text-muted-foreground">건의 신고</p>
                 </div>
                 <div className="grid grid-cols-3 gap-2 text-center text-xs">
                   <div>
                     <p className="font-medium">해결됨</p>
-                    <p className="text-green-600">8건</p>
+                    <p className="text-green-600">12건</p>
                   </div>
                   <div>
                     <p className="font-medium">처리중</p>
-                    <p className="text-yellow-600">3건</p>
+                    <p className="text-yellow-600">4건</p>
                   </div>
                   <div>
                     <p className="font-medium">대기중</p>
-                    <p className="text-red-600">1건</p>
+                    <p className="text-red-600">2건</p>
                   </div>
                 </div>
               </CardContent>
